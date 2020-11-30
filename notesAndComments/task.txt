@@ -1,0 +1,14 @@
+
+If you have a beautiful frontend to it: yes, it is nice and appreciated, but the backend functionality is key!!
+
+You are using MongoDB, express and react. Let's see what you can create. ;)
+
+The task:
+
+"Create a grocery shopping list. You can add items in the frontend. This data is stored in the backend. The list shows the items. You can create new items, you can delete items and you can modify items. So, if you want to change "tomaeteos" (misspelled) to "tomatoes", you can. All updated are stored in backend."
+
+Advanced bonus task:
+
+"Add a priority number to each item on the list, for example between 1 and 5, and the priority items appear first on the list but after they are checked as done (or already bought) they will go to the bottom of the list."
+
+>> Host your code on GitHub and send me an invitation to view the code.

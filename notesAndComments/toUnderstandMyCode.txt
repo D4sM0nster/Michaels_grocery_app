@@ -1,0 +1,2 @@
+this is an explanation about how to use this application :
+.env File should be in gitignore but you will need it to run this code.

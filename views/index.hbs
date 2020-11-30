@@ -1,0 +1,168 @@
+<div class="w3-center w3-black">
+<form action="/searchProducts" method="post">
+<button class="btn btn-danger" id="getProducts">
+    get products
+</button>
+</form>
+<form action="/searchOrder" method="post">
+<button class="btn btn-success" id="getProducts">
+    get products by price ranges
+</button>
+</form>
+<hr>
+    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#createProduct">
+        create a product
+    </button>
+</form>
+</div>
+{{#if msg}}
+<div class="alert alert-success" role="alert">
+  {{msg}}
+</div>
+{{/if}}
+ <table class="table table-dark" style="margin-top: 50px;">
+  <thead>
+    <tr>
+      <th scope="col">Product name</th>
+      <th scope="col">origin</th>
+      <th scope="col">price</th>
+      <th scope="col">kg</th>
+      <th scope="col">edit product</th>
+    </tr>
+  </thead>
+  <tbody>
+      {{#if product}}
+      {{#each product}}
+      {{#with this}}
+    <tr>
+      <th scope="row">{{product_name}}</th>
+      <td>{{origin}}</td>
+      <td>{{price}}</td>
+      <td>{{kilograms}}</td>
+      <td>  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edit{{_id}}">
+        edit a product
+    </button></td>
+    </tr>
+    {{/with}}
+    {{/each}}
+    {{/if}}    
+  </tbody>
+</table>
+
+
+
+  
+<!-- Modal create product -->
+<div class="modal fade" id="createProduct" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">create a product</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="/createProduct" method="POST">
+      <div class="modal-body">
+        <div class="form-group row">
+            <label for="colFormLabelLg" class="col-sm-2 col-form-label col-form-label-lg">Product name</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control form-control-lg" id="colFormLabelLg" placeholder="product name"
+                    name="product_name">
+            </div>
+        </div>
+        <hr>
+        <div class="form-group row">
+            <label for="colFormLabelLg" class="col-sm-2 col-form-label col-form-label-lg">origin country</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control form-control-lg" id="colFormLabelLg" placeholder="write a country"
+                    name="origin">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="colFormLabelLg" class="col-sm-2 col-form-label col-form-label-lg">Price</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control form-control-lg" id="colFormLabelLg" placeholder="price"
+                    name="price">
+            </div>
+        </div>
+      
+      </div>
+      <div class="form-group row">
+            <label for="colFormLabelLg" class="col-sm-2 col-form-label col-form-label-lg">kilogramss</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control form-control-lg" id="colFormLabelLg" placeholder="kg"
+                    name="kilograms">
+            </div>
+        </div>
+        <button type="submit" class="btn-primary">Submit product</button>
+        </form>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+{{#each product}}
+{{#with this}}
+<!-- Modal edit a product -->
+<div class="modal fade" id="edit{{_id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit this product</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <form action="/edit" method="POST">
+      <div class="modal-body">
+        <div class="form-group row">
+            <label for="colFormLabelLg" class="col-sm-2 col-form-label col-form-label-lg">Product name</label>
+            <input type="hidden" name="_id" value="{{_id}}"> 
+            <div class="col-sm-10">
+                <input type="text" class="form-control form-control-lg" id="colFormLabelLg" placeholder="{{product_name}}"
+                value="{{product_name}}"
+                    name="product_name">
+            </div>
+        </div>
+        <hr>
+        <div class="form-group row">
+            <label for="colFormLabelLg" class="col-sm-2 col-form-label col-form-label-lg">origin country</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control form-control-lg" id="colFormLabelLg" placeholder="{{orgin}}"
+                value="{{origin}}"
+                    name="origin">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="colFormLabelLg" class="col-sm-2 col-form-label col-form-label-lg">Price</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control form-control-lg" id="colFormLabelLg" placeholder="{{price}}"
+                value="{{price}}"
+                    name="price">
+            </div>
+        </div>
+      
+      </div>
+      <div class="form-group row">
+            <label for="colFormLabelLg" class="col-sm-2 col-form-label col-form-label-lg">kilogramss</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control form-control-lg" id="colFormLabelLg" placeholder="{{kilograms}}"
+                    value="{{kilograms}}"
+                    name="kilograms">
+            </div>
+        </div>
+        <button type="submit" class="btn-primary">edit this product</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+{{/with}}
+{{/each}}
